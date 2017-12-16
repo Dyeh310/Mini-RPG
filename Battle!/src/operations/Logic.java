@@ -20,6 +20,7 @@ public class Logic {
 	// ----------ENEMY---------
 	private Enemy enemy;
 	private EnemyList enemies = new EnemyList();
+	private Item loot;
 
 	// ----------ITEM---------
 	private Item item;
@@ -34,6 +35,7 @@ public class Logic {
 	// -----------INTERFACE-------------------
 	public void enemiesDefeated() {
 		System.out.println("You have defeated all the enemies!");
+		System.exit(0);
 	}
 
 	// ------------PLAYER METHODS-----------------
@@ -107,7 +109,7 @@ public class Logic {
 						Item item = items.getItem(itemChoice);
 						player.setHealth(player.getHealth() + item.getHeal());
 						System.out.println("The " + item.getName() + " healed " + player.getName() + " for" + " "
-								+ item.getHeal() + " health!!");
+								+ item.amountHealed() + " health!!");
 						// Remove below line
 						System.out.println(player);
 						success = true;
@@ -124,8 +126,11 @@ public class Logic {
 
 	// ---------------------ENEMY METHODS----------------
 	public Enemy enemyCreation() {
-		this.enemy = enemies.getRandomEnemy();
-
+		if (enemies.isEmpty()) {
+			enemiesDefeated(); //This needs to be updated eventually since it still prints enemy
+		} else {
+			this.enemy = enemies.getRandomEnemy();
+		}
 		return enemy;
 	}
 
@@ -146,6 +151,17 @@ public class Logic {
 		}
 		System.out.println(enemy.getName() + " attacked " + player.getName() + " for " + enemy.getPhysicalAttack()
 				+ " damage! \n" + player.getName() + " has " + player.getHealth() + " left! \n");
+	}
+
+
+	public void enemyDropLoot() {
+		loot = enemy.dropLoot();
+		if (loot != null) {
+			items.addItem((items.getSize()+1), loot);
+			System.out.println(loot + " was added to your iventory!");
+		} else {
+			System.out.println("The enemy didn't dropp any loot!");
+		}
 	}
 
 	/// get rid of

@@ -2,13 +2,16 @@ package enemy;
 
 import java.util.Random;
 
+import item.Item;
+import item.Potion;
+
 public class Enemy {
 
 	private int health;
 	private String name;
 	private int physicalAttack;
-	protected static Random random = new Random();
-	
+	protected Item loot;
+	protected Random random = new Random();
 	
 	public Enemy(int health, String name, int physicalAttack) {
 		this.health = health;
@@ -42,6 +45,11 @@ public class Enemy {
 	
 	public String toString() {
 		return getName() + " HP:" + getHealth() + " Attack:" + getPhysicalAttack();
+	}
+	
+	public Item dropLoot () {
+		loot = new Potion();
+		return loot;
 	}
 	
 	

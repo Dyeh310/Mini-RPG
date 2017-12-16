@@ -6,23 +6,26 @@ import java.util.Map;
 public class ItemList {
 
 	private Map<Integer, Item> items;
-	
-	public ItemList () {
+	private int itemAmount = 1;
+
+	public ItemList() {
 		this.items = new HashMap<>();
 	}
-	
+
+
 	public void generateList() {
-		items.put(1, new Item (1, 30, "Potion"));
+		items.put(1, new Potion());
+		items.put(2, new Potion());
 	}
-	
+
 	public boolean isEmpty() {
-		if(items.isEmpty()) {
+		if (items.isEmpty()) {
 			return true;
 		} else {
 			return false;
 		}
 	}
-	
+
 	public Item getItem(int itemChoice) {
 		for (Integer i : items.keySet()) {
 			if (i == itemChoice) {
@@ -30,9 +33,10 @@ public class ItemList {
 				items.remove(itemChoice);
 				return item;
 			}
-		} return null;
+		}
+		return null;
 	}
-	
+
 	public boolean containsKey(int itemChoice) {
 		if (items.containsKey(itemChoice)) {
 			return true;
@@ -40,10 +44,17 @@ public class ItemList {
 			return false;
 		}
 	}
-
+	
+	public void addItem(int key, Item value) {
+		
+	}
+	
+	public int getSize() {
+		return items.size();
+	}
 
 	public String toString() {
 		return items.toString();
 	}
-	
+
 }

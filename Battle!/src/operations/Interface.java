@@ -36,7 +36,9 @@ public class Interface {
 				logic.playerTurn();
 				if(enemy.getHealth() == 0) {
 					System.out.println(enemy.getName() + " has died!");
+					logic.enemyDropLoot();
 					enemy = logic.enemyCreation();
+					//Omit bottom line when ready
 					System.out.println(enemy.getName() + " has stepped into the arena! Goodluck!! \n");
 				}
 			}

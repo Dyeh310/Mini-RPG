@@ -10,14 +10,7 @@ public class Test {
 		ItemList items = new ItemList();
 		items.generateList();
 		
-		System.out.println(items);
-		
-		if (items.containsKey(1)) {
-			Item item = items.getItem(1);
-			System.out.println(item);
-		} else {
-			System.out.println("False");
-		}
+		System.out.println(items.getSize());
 		
 	}
 

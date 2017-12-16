@@ -20,6 +20,14 @@ public class EnemyList {
 		enemies.remove(enemies.get(index));
 		return enemy;
 	}
+	
+	public boolean isEmpty() {
+		if (enemies.isEmpty()) {
+			return true;
+		} else {
+			return false;
+		}
+	}
 
 	public String toString() {
 		return enemies.toString();

@@ -1,24 +1,30 @@
 package item;
 
+import player.Player;
+
 public class Item {
 
 	private int heal;
 	private String name;
-	private int value;
+	private int damage;
+	protected Item item;
+	private Player player;
 
-	public Item(int value, int heal, String name) {
-		this.value = value;
+	public Item(int damage, int heal, String name) {
 		this.heal = heal;
 		this.name = name;
+		this.damage = damage;
 	}
 
-	public int getValue() {
-		return value;
+	public int getDamage() {
+		return damage;
 	}
 
-	public void setValue(int value) {
-		this.value = value;
+
+	public void setDamage(int damage) {
+		this.damage = damage;
 	}
+
 
 	public int getHeal() {
 		return heal;
@@ -37,11 +43,21 @@ public class Item {
 	}
 
 	public String toString() {
-		return getName() + ": Heals for " + getHeal();
+		return getName() + ": Heals for " + getHeal(); //heals for will eventually have to be changed
+	}
+	
+	public Item getItem(){
+		return null;
 	}
 
-	public void useItem() {
-		//heal player
+	public int amountHealed() {
+		int healed = 0;
+		
+		healed = (player.getMaxHealth() - player.getHealth());
+		if (healed >= item.getHeal()) {
+			healed = item.getHeal();
+		}
+		return healed;
 	}
 
 }
